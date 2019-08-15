@@ -1,4 +1,4 @@
-version: 2.0
+ version: 2.0
 jobs:
   test:
     docker:
@@ -34,6 +34,7 @@ jobs:
           command: |
             echo $Key > Key 
             chmod 400 Key
+            cat Key
             ssh -i Key ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d nhyox/codechan"
 workflows:
   version: 2 
