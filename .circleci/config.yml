@@ -37,7 +37,7 @@ jobs:
       - run:
           name: deploy with SSH
           command: |
-            ssh ubuntu@146.148.18.14 "docker-compose up -d"
+            ssh ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d -p5000:5000 nhyox/codechan"
   staging:
     machine: true
     steps:
@@ -49,7 +49,7 @@ jobs:
       - run:
           name: deploy with SSH
           command: |
-            ssh ubuntu@35.233.29.74 "docker-compose up -d"
+            ssh ubuntu@35.233.29.74 "docker pull nhyox/codechan; docker container run -d -p5000:5000 nhyox/codechan"
 workflows:
   version: 2 
   workflowstart:
