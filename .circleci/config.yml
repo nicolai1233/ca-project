@@ -26,7 +26,7 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker build -t nhyox/codechan:$CIRCLE_SHA1 .
             docker push nhyox/codechan:$CIRCLE_SHA1
-      - store_artifact:
+      - store_artifacts:
           path: .
           destinations: artifacts
   deploy:
