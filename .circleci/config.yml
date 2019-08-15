@@ -41,7 +41,7 @@ workflows:
       - test
       - package:
           requires:
-            -test
+            - test
       - deploy:
           requires:
             - package
