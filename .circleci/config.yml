@@ -1,13 +1,14 @@
 version: 2.0
 jobs:
-  build:
+  test:
     docker:
-      - image: nhyox/codechan
+      - image: python
     steps:
       - checkout
-      - run:
+      - run: 
           name: test_pyhton
-          command: python tests.py
+          command: |
+            pip install -r requirments.txt
+            python tests.py
       - store_test_results:
           path: .
-
