@@ -1,14 +1,17 @@
 version: 2.0
 jobs:
-  build:
+  test:
     docker:
-      - image: python
+      - image: nhyox/codechan
     steps:
       - checkout
       - run: 
           name: test_pyhton
-          command: |
-            pip install -r requirments.txt /ca-project
+          command: 
             python tests.py
       - store_test_results:
           path: .
+      - persist_to:workspace:
+          root: .
+          paths:
+            - .
