@@ -8,7 +8,7 @@ jobs:
       - run: 
           name: test_pyhton
           command: |
-            pip install -r requirments.txt ./
+            pip install -r requirments.txt /ca-project/
             python tests.py
       - store_test_results:
           path: .
