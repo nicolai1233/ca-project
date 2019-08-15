@@ -32,9 +32,9 @@ jobs:
       - run:
           name: deploy with SSH
           command: |
-            echo $key > key 
-            chmod 400 key
-            ssh -i key ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d nhyox/codechan"
+            echo $Key > Key 
+            chmod 400 Key
+            ssh -i Key ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d nhyox/codechan"
 workflows:
   version: 2 
   workflowstart:
