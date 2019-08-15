@@ -52,7 +52,7 @@ jobs:
       - run:
           name: deploy with SSH
           command: |
-            ssh ubuntu@35.233.29.74 "docker container rm dockercon; docker pull nhyox/codechan; docker container run --dockercon -d -p5000:5000 nhyox/codechan"
+            ssh ubuntu@35.233.29.74 "docker container rm dockercon; docker pull nhyox/codechan; docker container run --name dockercon -d -p5000:5000 nhyox/codechan"
 workflows:
   version: 2 
   workflowstart:
