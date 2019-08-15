@@ -1,0 +1,4 @@
+Flask==1.1.1
+Flask-SQLAlchemy==2.4.0
+Python-form==0.2.2
+Flask-WTF==0.14.2
