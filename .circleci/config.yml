@@ -40,7 +40,7 @@ jobs:
       - run:
           name: deploy with SSH
           command: |
-            ssh ubuntu@146.148.18.14 "docker container rm dockercon;  docker pull nhyox/codechan; docker container run --name dockercon -d -p5000:5000 nhyox/codechan"
+            ssh ubuntu@146.148.18.14 "docker container rm dockercon; docker pull nhyox/codechan; docker container run --name dockercon -d -p5000:5000 nhyox/codechan"
   staging:
     machine: true
     steps:
