@@ -1,6 +1,6 @@
 version: 2.0
 jobs:
-  build:
+  test:
     docker:
       - image: nhyox/codechan
     steps:
@@ -11,7 +11,37 @@ jobs:
             python tests.py
       - store_test_results:
           path: .
-      - persist_to_workspace:
+      - persist_to:workspace:
           root: .
           paths:
             - .
+  package:
+    machine: true
+    steps:
+      - attach_workspace:
+          at: . 
+      - run:
+          name: package
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker build -t nhyox/codechan:$CIRCLE_SHA1 .
+            docker push nhyox/codechan:$CIRCLE_SHA1
+  deploy:
+    steps:
+      - run:
+          name: deploy with SSH
+          command: |
+            echo $key > key 
+            chmod 400 key
+            ssh -i key ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d nhyox/codechan"
+  workflows:
+    version: 2 
+    workflowstart:
+      jobs:
+        - test
+        - package:
+            requires:
+              -test
+        - deploy:
+            requires:
+              - package
