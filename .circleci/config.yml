@@ -29,13 +29,13 @@ jobs:
   deploy:
     machine: true
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "bc:b2:8d:c5:3c:61:9e:44:93:37:a3:2b:cf:36:09:a2"
       - run:
           name: deploy with SSH
           command: |
-            echo $Key > Key 
-            chmod 400 Key
-            cat Key
-            ssh -i Key ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d nhyox/codechan"
+            ssh ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d nhyox/codechan"
 workflows:
   version: 2 
   workflowstart:
