@@ -29,23 +29,27 @@ jobs:
   deploy:
     machine: true
     steps:
+      - attach_workspace:
+          at: .
       - add_ssh_keys:
           fingerprints:
             - "bc:b2:8d:c5:3c:61:9e:44:93:37:a3:2b:cf:36:09:a2"
       - run:
           name: deploy with SSH
           command: |
-            ssh ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d -p5000:5000 nhyox/codechan"
+            ssh ubuntu@146.148.18.14 "docker-compose up -d"
   staging:
     machine: true
     steps:
+      - attach_workspace:
+          at: .
       - add_ssh_keys:
           fingerprints:
             - "bc:b2:8d:c5:3c:61:9e:44:93:37:a3:2b:cf:36:09:a2"
       - run:
           name: deploy with SSH
           command: |
-            ssh ubuntu@35.233.29.74 "docker pull nhyox/codechan; docker container run -d -p5000:5000 nhyox/codechan"
+            ssh ubuntu@35.233.29.74 "docker-compose up -d"
 workflows:
   version: 2 
   workflowstart:
