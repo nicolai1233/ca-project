@@ -34,14 +34,14 @@ jobs:
             echo $key > key 
             chmod 400 key
             ssh -i key ubuntu@146.148.18.14 "docker pull nhyox/codechan; docker container run -d nhyox/codechan"
-  workflows:
-    version: 2 
-    workflowstart:
-      jobs:
-        - test
-        - package:
-            requires:
-              -test
-        - deploy:
-            requires:
-              - package
+workflows:
+  version: 2 
+  workflowstart:
+    jobs:
+      - test
+      - package:
+          requires:
+            -test
+      - deploy:
+          requires:
+            - package
