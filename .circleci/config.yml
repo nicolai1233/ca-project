@@ -11,7 +11,7 @@ jobs:
             python tests.py
       - store_test_results:
           path: .
-      - persist_to:workspace:
+      - persist_to_workspace:
           root: .
           paths:
             - .
